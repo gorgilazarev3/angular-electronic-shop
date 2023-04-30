@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "angular-online-shop": "angular-online-shop-2787d"
+  },
+  "targets": {
+    "angular-online-shop-2787d": {
+      "hosting": {
+        "angular-online-shop": [
+          "angular-online-shop-2787d"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+table, th, td {
+    border: 1px solid rgba(0, 0, 0, 0.109);
+    border-collapse: collapse;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  .my-orders-table {
+      font-size: 18px;
+      width: 50%;
+      text-align: center;
+      margin: 0 auto;
+  }
+
+  .mat-display-1 {
+    text-transform: uppercase;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.header-content {
+    padding-left: 10em;
+    padding-bottom: 4em;
+}
+
+.header-border {
+    border-bottom: 1px solid orange;
+    border-bottom-width: thick;
+    width: 8em;
+    margin-top: -4em;
+}
+
+.my-orders-table {
+    box-shadow: 0px 3px 5px -1px rgb(0 0 0 / 20%), 0px 6px 10px 0px rgb(0 0 0 / 14%), 0px 1px 18px 0px rgb(0 0 0 / 12%);
+}
+
+app-mat-footer {
+    bottom: 0;
+    width: 100%
+}
+
+@media (max-width: 940px) {
+    .my-orders-table {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 560px) {
+    .header-content {
+        padding-left: 0;
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .mat-display-1 {
+        font-size: 25px;
+    }
+    .header-border {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .my-orders-table {
+        font-size: 13px;
+    }
+}
+
+

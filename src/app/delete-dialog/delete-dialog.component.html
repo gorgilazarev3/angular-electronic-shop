@@ -1,0 +1,19 @@
+<div>
+    <h2 class="mat-h2">Order Details</h2>
+    <div class="mat-body">
+        <h3 class="mat-h3">Shipping Details</h3>
+        <mat-divider></mat-divider>
+        <h4 class="mat-h4">Customer Name: <span>{{data.shipping.name}}</span></h4>
+        <h4 class="mat-h4">Shipping Address: <span>{{data.shipping.address}}</span><span *ngIf="data.shipping.address2">, {{data.shipping.address2}}</span></h4>
+        <h4 class="mat-h4">City: <span>{{data.shipping.city}}</span></h4>
+        <mat-divider></mat-divider>
+        <h3 class="mat-h3">Items:</h3>
+        <h5 *ngFor="let item of data.items">{{item.quantity}} x {{ item.product.title }} - {{ item.product.price | currency:'USD' }}</h5>
+        <mat-divider></mat-divider>
+        <h4 class="mat-h4">Total Cost: <span>{{data.totalCost | currency:'USD' }}</span></h4>
+    </div>
+</div>
+<div>
+    <!-- <button (click)="deleteOrder(data)" class="yes" mat-raised-button color="primary">Yes</button> -->
+    <button (click)="onNoClick()" class="no" mat-raised-button color="warn">Close</button>
+</div>

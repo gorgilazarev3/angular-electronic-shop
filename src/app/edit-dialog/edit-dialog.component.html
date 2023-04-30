@@ -1,0 +1,67 @@
+<form #f2="ngForm" id="edit-product-form">
+    <div class="edit-product-form">
+    <button mat-raised-button color="accent" (click)="changeTitle = !changeTitle">Change title</button>
+    <div *ngIf="changeTitle">
+        <mat-form-field appearance="fill">
+            <mat-label>New Product Title</mat-label>
+            <input #title2="ngModel" ngModel name="title" id="title" matInput [placeholder]="data.title" type="text" required>
+            <mat-error *ngIf="title2.touched && title2.invalid">Product title is required.</mat-error>
+        </mat-form-field>
+    </div>
+
+    <br>    <br>
+
+    <button mat-raised-button color="accent" (click)="changePrice = !changePrice">Change price</button>
+    <div *ngIf="changePrice">
+        <mat-form-field appearance="fill">
+            <mat-label>New Price</mat-label>
+            <span matPrefix>$&nbsp;</span>
+            <input #price2="ngModel" ngModel name="price" id="price" matInput [placeholder]="data.price" type="number" required [min]="0">
+            <mat-error *ngIf="price2.touched && price2.errors?.required">Product price is required.</mat-error>
+            <mat-error *ngIf="price2.errors?.min">Price should be 0 or higher.</mat-error>
+        </mat-form-field>
+    </div>
+
+
+    <br>    <br>
+
+    <button mat-raised-button color="accent" (click)="changeCategory = !changeCategory">Change category</button>
+    <div *ngIf="changeCategory">
+    <mat-form-field appearance="fill">
+        <mat-label>New Category</mat-label>
+        <mat-select #category2="ngModel" ngModel name="category" required>
+          <mat-option></mat-option>
+          <mat-option *ngFor="let cat of categories$ | async" [value]="cat.id">
+            {{ cat.data.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="category2.touched && category2.invalid">Category is required.</mat-error>
+      </mat-form-field>
+    </div>
+
+
+
+      <br>    <br>
+
+      <button mat-raised-button color="accent" (click)="changeImage = !changeImage">Change Image URL</button>
+      <div *ngIf="changeImage">
+      <mat-form-field appearance="fill">
+        <mat-label>New Image URL</mat-label>
+        <input #imageUrl2="ngModel" ngModel name="imageUrl" id="imageUrl" matInput placeholder="Paste the new image URL here" type="text" required url (ngModelChange)="newImage = true;oldImage = false">
+        <mat-error *ngIf="imageUrl2.touched && imageUrl2.errors?.required">ImageURL is required.</mat-error>
+        <mat-error *ngIf="imageUrl2.errors?.url">Please enter a valid URL.</mat-error>
+    </mat-form-field>
+    <img *ngIf="newImage" [src]="imageUrl2.value" width="100px">
+    <img *ngIf="oldImage" [src]="data.imageUrl" width="100px">
+    </div>
+
+    <br>
+    <br>
+    <div class="dialog-buttons">
+        <button mat-raised-button color="primary" (click)="editProduct(f2.value)">Save</button>
+        <button mat-raised-button color="warn" (click)="delete(data)">Delete</button>
+        <button id="closeDialog" mat-raised-button color="primary" (click)="onNoClick()">Close</button>
+    </div>
+
+    </div>
+</form>

@@ -1,0 +1,228 @@
+<div class="header-content">
+    <h1 class="mat-display-1">Shipping Details</h1>
+    <div class="header-border"></div>
+  </div>
+
+<mat-grid-list cols="2" class="desktop-grid-list">
+<mat-grid-tile>
+    <!-- <form #f="ngForm" (ngSubmit)="placeOrder(f.value)" id="check-out-form">
+        <div class="check-out-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input #name="ngModel" ngModel name="name" id="name" matInput placeholder="Enter your name" type="text" required>
+            <mat-error *ngIf="name.touched && name.invalid">Please enter your name.</mat-error>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input #address="ngModel" ngModel name="address" id="address" matInput placeholder="Enter the address for shipping" type="text" required>
+            <mat-error *ngIf="address.touched && address.invalid">Please enter the shipping address.</mat-error>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        
+        <mat-form-field appearance="fill">
+            <input #address="ngModel" ngModel name="address2" id="address2" matInput placeholder="Apartment, suite, etc. (optional)" type="text">
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input #city="ngModel" ngModel name="city" id="city" matInput placeholder="Enter the city for shipping" type="text" required>
+            <mat-error *ngIf="city.touched && city.invalid">Please enter the city for shipping.</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <button mat-raised-button color="primary">Place Order</button>
+        </div>
+        <div class="form-card-divider"></div>
+    </form> -->
+    <mat-stepper
+  class="example-stepper" [orientation]="(stepperOrientation | async)!">
+  <form #f="ngForm" (ngSubmit)="placeOrder(f.value)" id="check-out-form">
+  <mat-step label="Fill out your name">
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input #name="ngModel" ngModel name="name" id="name" matInput placeholder="Enter your name" type="text" required>
+        <mat-error *ngIf="name.touched && name.invalid">Please enter your name.</mat-error>
+    </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step label="Fill out your address">
+    <mat-form-field appearance="fill">
+        <mat-label>Address</mat-label>
+        <input #address="ngModel" ngModel name="address" id="address" matInput placeholder="Enter the address for shipping" type="text" required>
+        <mat-error *ngIf="address.touched && address.invalid">Please enter the shipping address.</mat-error>
+    </mat-form-field>
+
+    <mat-divider></mat-divider>
+    
+    <mat-form-field appearance="fill">
+        <input #address="ngModel" ngModel name="address2" id="address2" matInput placeholder="Apartment, suite, etc. (optional)" type="text">
+    </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+  </mat-step>
+  <mat-step label="Fill out your city">
+    <mat-form-field appearance="fill">
+        <mat-label>City</mat-label>
+        <input #city="ngModel" ngModel name="city" id="city" matInput placeholder="Enter the city for shipping" type="text" required>
+        <mat-error *ngIf="city.touched && city.invalid">Please enter the city for shipping.</mat-error>
+    </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Check Out</ng-template>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button [disabled]="f.invalid" (click)="placeOrder(f.value)" mat-raised-button color="primary">Place Order</button>
+    </div>
+  </mat-step>
+</form>
+</mat-stepper>
+</mat-grid-tile>
+
+<mat-grid-tile>
+    <mat-card class="example-card">
+        <mat-card-title>Order Summary</mat-card-title>
+        <mat-card-content>
+        <div *ngFor="let item of cartItems">
+          <p class="quantity-title-display">{{ item.quantity }} x {{ item.product.title }}</p>
+          <p class="price-display"> {{item.product.price | currency:'USD'}}</p>
+          <mat-divider inset></mat-divider>
+        </div>
+        </mat-card-content>
+        
+        <mat-card-actions>
+            <p class="quantity-title-display total-display">Total: </p>
+            <p class="price-display total-display"> {{ totalCost | currency:'USD' }}</p>
+        </mat-card-actions>
+      </mat-card>
+</mat-grid-tile>
+
+</mat-grid-list>
+
+<mat-grid-list cols="1" class="mobile-grid-list">
+    <mat-grid-tile>
+        <!-- <form #f="ngForm" (ngSubmit)="placeOrder(f.value)" id="check-out-form">
+            <div class="check-out-form">
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input #name="ngModel" ngModel name="name" id="name" matInput placeholder="Enter your name" type="text" required>
+                <mat-error *ngIf="name.touched && name.invalid">Please enter your name.</mat-error>
+            </mat-form-field>
+    
+            <mat-divider></mat-divider>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input #address="ngModel" ngModel name="address" id="address" matInput placeholder="Enter the address for shipping" type="text" required>
+                <mat-error *ngIf="address.touched && address.invalid">Please enter the shipping address.</mat-error>
+            </mat-form-field>
+    
+            <mat-divider></mat-divider>
+            
+            <mat-form-field appearance="fill">
+                <input #address="ngModel" ngModel name="address2" id="address2" matInput placeholder="Apartment, suite, etc. (optional)" type="text">
+            </mat-form-field>
+    
+            <mat-divider></mat-divider>
+            
+            <mat-form-field appearance="fill">
+                <mat-label>City</mat-label>
+                <input #city="ngModel" ngModel name="city" id="city" matInput placeholder="Enter the city for shipping" type="text" required>
+                <mat-error *ngIf="city.touched && city.invalid">Please enter the city for shipping.</mat-error>
+            </mat-form-field>
+    
+            <br>
+    
+            <button mat-raised-button color="primary">Place Order</button>
+            </div>
+            <div class="form-card-divider"></div>
+        </form> -->
+        <mat-stepper
+        class="example-stepper" orientation="vertical">
+        <form #f2="ngForm" (ngSubmit)="placeOrder(f2.value)" id="check-out-form">
+        <mat-step label="Fill out your name">
+          <mat-form-field appearance="fill">
+              <mat-label>Name</mat-label>
+              <input #name="ngModel" ngModel name="name" id="name" matInput placeholder="Enter your name" type="text" required>
+              <mat-error *ngIf="name.touched && name.invalid">Please enter your name.</mat-error>
+          </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step label="Fill out your address">
+          <mat-form-field appearance="fill">
+              <mat-label>Address</mat-label>
+              <input #address="ngModel" ngModel name="address" id="address" matInput placeholder="Enter the address for shipping" type="text" required>
+              <mat-error *ngIf="address.touched && address.invalid">Please enter the shipping address.</mat-error>
+          </mat-form-field>
+      
+          <mat-divider></mat-divider>
+          
+          <mat-form-field appearance="fill">
+              <input #address="ngModel" ngModel name="address2" id="address2" matInput placeholder="Apartment, suite, etc. (optional)" type="text">
+          </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+        </mat-step>
+        <mat-step label="Fill out your city">
+          <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input #city="ngModel" ngModel name="city" id="city" matInput placeholder="Enter the city for shipping" type="text" required>
+              <mat-error *ngIf="city.touched && city.invalid">Please enter the city for shipping.</mat-error>
+          </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+      
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Check Out</ng-template>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button (click)="placeOrder(f2.value)" mat-raised-button color="primary">Place Order</button>
+          </div>
+        </mat-step>
+      </form>
+      </mat-stepper>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+        <mat-card class="example-card">
+            <mat-card-title>Order Summary</mat-card-title>
+            <mat-card-content>
+            <div *ngFor="let item of cartItems">
+              <p class="quantity-title-display">{{ item.quantity }} x {{ item.product.title }}</p>
+              <p class="price-display"> {{item.product.price | currency:'USD'}}</p>
+              <mat-divider inset></mat-divider>
+            </div>
+            </mat-card-content>
+            
+            <mat-card-actions>
+                <p class="quantity-title-display total-display">Total: </p>
+                <p class="price-display total-display"> {{ totalCost | currency:'USD' }}</p>
+            </mat-card-actions>
+          </mat-card>
+    </mat-grid-tile>
+    
+    </mat-grid-list>
+
+    <app-mat-footer></app-mat-footer>

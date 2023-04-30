@@ -1,0 +1,47 @@
+.mat-elevation-z8 {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding-left: 3em;
+    font-size: 18px;
+}
+
+.mat-display-1 {
+    text-transform: uppercase;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.header-content {
+    padding-left: 10em;
+    padding-bottom: 4em;
+}
+
+.header-border {
+    border-bottom: 1px solid orange;
+    border-bottom-width: thick;
+    width: 8em;
+    margin-top: -4em;
+}
+
+app-mat-footer {
+    bottom: 0;
+    width: 100%
+}
+
+@media (max-width: 560px) {
+    .header-content {
+        padding-left: 0;
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .mat-display-1 {
+        font-size: 25px;
+    }
+    .header-border {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

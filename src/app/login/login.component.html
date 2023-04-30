@@ -1,0 +1,62 @@
+<mat-tab-group class="auth-form-container" backgroundColor="primary" mat-align-tabs="center">
+    <mat-tab label="Login">
+        <div class="card-container">
+        <mat-card>
+            <div class="header-content">
+                <h1 class="mat-display-1">LOGIN</h1>
+                <div class="header-border"></div>
+              </div>
+            <mat-form-field appearance="fill">
+              <mat-label>Enter your email</mat-label>
+              <input #loginEmail matInput placeholder="name@domain.com" [formControl]="email" required>
+              <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Enter your password</mat-label>
+                <input #loginPassword matInput [formControl]="password" required [minlength]="minPw" type="password">
+                <mat-hint>Password should be minimum 8 characters</mat-hint>
+                <mat-error *ngIf="password.invalid">{{getPwErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <div class="login-btns">
+            <button id="login-button" mat-raised-button color="primary" [disabled]="email.invalid || password.invalid" (click)="authService.login(loginEmail.value,loginPassword.value)">Login</button>
+            <a class="forgot-pass-btn" mat-button (click)="authService.forgotPassword(loginEmail.value)">Forgot your password?</a>
+            </div>
+        </mat-card>
+    </div>
+    </mat-tab>
+    
+    <mat-tab label="Register">
+        <div class="card-container">
+            <mat-card>
+                <div class="header-content">
+                    <h1 class="mat-display-1">REGISTER</h1>
+                    <div class="header-border"></div>
+                  </div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter an email</mat-label>
+                  <input #registerEmail matInput placeholder="name@domain.com" [formControl]="email" required>
+                  <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+    
+                <mat-form-field appearance="fill">
+                    <mat-label>Enter a password</mat-label>
+                    <input name="registerPassword" ngModel #registerPassword matInput [formControl]="password" required [minlength]="minPw" type="password">
+                    <mat-hint>Password should be minimum 8 characters</mat-hint>
+                    <mat-error *ngIf="password.invalid">{{getPwErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+                <!-- <mat-form-field appearance="fill">
+                    <mat-label>Confirm your password</mat-label>
+                    <input name="confirmPw" #confirmPw="ngModel" matInput [formControl]="password" required [minlength]="minPw" type="password" [equalTo]="registerPassword">
+                    <mat-error *ngIf="confirmPw.errors?.equalTo">Passwords don't match</mat-error>
+                </mat-form-field> -->
+    
+                <button id="login-button" mat-raised-button color="primary"  [disabled]="email.invalid || password.invalid" (click)="authService.register(registerEmail.value,registerPassword.value)">Register</button>
+            </mat-card>
+            </div>
+            <div *ngIf="authService.isRegistered">You've been successfully registered</div>
+    </mat-tab>
+  </mat-tab-group>
+
+  <app-mat-footer></app-mat-footer>

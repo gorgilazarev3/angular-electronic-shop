@@ -1,0 +1,80 @@
+.auth-form-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.mat-tab-labels {
+    justify-content: space-evenly;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.card-container {
+    padding-top: 2em;
+    padding-bottom: 1em;
+    height: 80%;
+    width: 95%;
+    margin: 0 auto;
+}
+
+#login-button {
+    margin: 0 auto;
+    margin-top: 1em;
+}
+
+.mat-display-1 {
+    text-transform: uppercase;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.header-content {
+    width: fit-content;
+    margin: 0 auto;
+    padding-bottom: 4em;
+}
+
+.header-border {
+    border-bottom: 1px solid orange;
+    border-bottom-width: thick;
+    width: 7em;
+    margin: 0 auto;
+    margin-top: -4em;
+}
+
+.forgot-pass-btn {
+    margin-left: 2em;
+}
+
+app-mat-footer {
+    bottom: 0;
+    width: 100%
+}
+
+@media (max-width: 960px)
+{
+    .auth-form-container {
+        width: 80%;
+    }
+}
+
+@media (max-width: 560px) {
+    .header-content {
+        padding-left: 0;
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .mat-display-1 {
+        font-size: 25px;
+    }
+    .header-border {
+        margin-left: auto;
+        margin-right: auto;
+        width: 5em;
+    }
+    .forgot-pass-btn {
+        margin-left: 0;
+    }
+}

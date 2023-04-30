@@ -1,0 +1,25 @@
+<div class="header-content">
+    <h1 class="mat-display-1">My Orders</h1>
+    <div class="header-border"></div>
+  </div>
+
+<div class="my-orders-div">
+    <table class="my-orders-table">
+        <thead >
+            <tr>
+                <th>Customer</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of userOrders | async">
+                <td *ngIf="order.userId == userId">{{ order.shipping.name }}</td>
+                <td *ngIf="order.userId == userId">{{ order.datePlaced | date }}</td>
+                <td *ngIf="order.userId == userId"><button mat-raised-button color="accent" (click)="openDetailsDialog(order)">Details</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<app-mat-footer></app-mat-footer>
+
+

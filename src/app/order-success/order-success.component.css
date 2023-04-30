@@ -1,0 +1,33 @@
+mat-icon {
+    font-size: 100px;
+    color: #73ea73;
+    margin-left: -0.7em;
+    padding-bottom: 1.3em;
+}
+
+.mat-h2 {
+    padding-bottom: 1em;
+}
+
+.order-success {
+    width:fit-content;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.mat-elevation-z6 {
+    padding: 5em;
+    border-radius: 5%;
+    margin-top: 5em;
+}
+
+app-mat-footer {
+    bottom: 0;
+    width: 100%
+}
+
+@media (max-width: 550px) {
+    .mat-elevation-z6 {
+        padding: 2em;
+    }
+}

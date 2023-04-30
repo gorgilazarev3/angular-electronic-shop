@@ -1,0 +1,73 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [ngClass]="{hidden: !(isHandset$ | async)}"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      (click)="drawer.toggle()">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Home</a>
+      <a mat-list-item routerLink="/shopping-cart"><mat-icon>shopping_cart </mat-icon>Shopping Cart</a>
+      <ng-template #anonymusUser>
+        <a mat-list-item routerLink="/login">Login</a>
+        <a mat-list-item></a>
+      </ng-template>
+      <div *ngIf="authService.user$ | async; else anonymusUser">
+      <a mat-list-item>{{ appUser.email }}
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/my/orders">
+        <mat-icon color="primary">shopping_bag</mat-icon>
+        <span class="nav-icons"></span>My Orders
+      </a>
+      <ng-container *ngIf="appUser?.isAdmin">
+        <a mat-list-item routerLink="/admin/orders">
+          <mat-icon color="primary">library_books</mat-icon>
+          <span class="nav-icons"></span>Manage Orders
+        </a>
+        <a mat-list-item routerLink="/admin/products">
+          <mat-icon color="primary">library_add</mat-icon>
+          <span class="nav-icons"></span>Manage Products
+        </a>
+      </ng-container>
+      <a mat-list-item (click)="authService.logOut()">
+        <mat-icon color="primary">logout</mat-icon>
+        <span class="nav-icons"></span>Log Out
+      </a>
+    </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"> 
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span id="nav-logo" routerLink="/"><img width="225px" src="https://i.imgur.com/EdtL4HO.png" alt="Text Logo"></span>
+      <span class="spacer"></span>
+      <div [ngClass]="{hidden: (isHandset$ | async)}">
+        <a mat-stroked-button routerLink="/shopping-cart" routerLinkActive="active-link"><mat-icon>shopping_cart </mat-icon>Shopping Cart</a>
+        <ng-template #userNotLoggedIn>
+          <a mat-stroked-button routerLink="/login" routerLinkActive="active-link" >Login</a>
+        </ng-template>
+        <button *ngIf="authService.user$ | async; else userNotLoggedIn" mat-stroked-button [matMenuTriggerFor]="menu"> {{ appUser.email }}
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item routerLink="/my/orders">My Orders</button>
+          <ng-container *ngIf="appUser?.isAdmin">
+            <button mat-menu-item routerLink="/admin/orders">Manage Orders</button>
+            <button mat-menu-item routerLink="/admin/products">Manage Products</button>
+          </ng-container>
+          <button mat-menu-item (click)="authService.logOut()">Log Out</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,49 @@
+<div class="button-filter">
+<button mat-raised-button routerLink="/admin/products/new" color="primary">New Product</button>
+
+<br>
+
+<mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search for a product" #input>
+  </mat-form-field>
+</div>
+  
+  <div class="mat-elevation-z8" style="margin-bottom: 10em">
+    <table #table mat-table [dataSource]="dataSource" matSort [trackBy]="trackByUid">
+  
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+        <td mat-cell *matCellDef="let product"> {{product.title}} </td>
+      </ng-container>
+  
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td mat-cell *matCellDef="let product"> {{product.price | currency:'USD'}} </td>
+      </ng-container>
+  
+      <!-- Edit Column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+        <td mat-cell *matCellDef="let product" >
+            <button mat-raised-button color="primary" (click)="openDialog(product)">Edit</button>
+            
+        </td>
+      </ng-container>
+  
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of products"></mat-paginator>
+  </div>
+
+  <app-mat-footer></app-mat-footer>

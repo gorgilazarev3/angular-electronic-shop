@@ -1,0 +1,193 @@
+<div class="header-content">
+  <h1 class="mat-display-1">ADD A NEW PRODUCT</h1>
+  <div class="header-border"></div>
+</div>
+
+<mat-grid-list cols="1" class="mobile-grid-list" style="margin-bottom: 15em; margin-left: 2em;">
+  <!-- <mat-grid-tile class="mobile-grid-tile">
+    <mat-card class="small-card">
+      <mat-card-title-group>
+        <mat-card-title>{{ title.value }}</mat-card-title>
+        <mat-card-subtitle>Small</mat-card-subtitle>
+        <img mat-card-sm-image [src]="imageUrl.value" >
+      </mat-card-title-group>
+      <mat-card-content>
+        {{ price.value | currency:'USD'}}
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="medium-card">
+      <mat-card-title-group>
+        <mat-card-title>{{ title.value }}</mat-card-title>
+        <mat-card-subtitle>Medium</mat-card-subtitle>
+        <img mat-card-md-image [src]="imageUrl.value" >
+      </mat-card-title-group>
+      <mat-card-content>
+        {{ price.value | currency:'USD':true}}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile> -->
+
+  <mat-grid-tile >
+    <form #f="ngForm" (ngSubmit)="save(f.value)" id="add-product-form">
+      <div class="new-product-form">
+      <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input #title="ngModel" ngModel name="title" id="title" matInput placeholder="Enter the product title" type="text" required>
+          <mat-error *ngIf="title.touched && title.invalid">Product title is required.</mat-error>
+      </mat-form-field>
+
+      <mat-divider class="product-form-dividers"></mat-divider>
+  
+      <mat-form-field appearance="fill">
+          <mat-label>Price</mat-label>
+          <span matPrefix>$&nbsp;</span>
+          <input #price="ngModel" ngModel name="price" id="price" matInput placeholder="Enter the product price" type="number" required [min]="0">
+          <mat-error *ngIf="price.touched && price.errors?.required">Product price is required.</mat-error>
+          <mat-error *ngIf="price.errors?.min">Price should be 0 or higher.</mat-error>
+      </mat-form-field>
+  
+      <mat-divider class="product-form-dividers"></mat-divider>
+      
+      <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select #category="ngModel" ngModel name="category" required>
+            <mat-option></mat-option>
+            <mat-option *ngFor="let cat of categories$ | async" [value]="cat.id"  (click)="getSubCategory(cat.id)">
+              {{ cat.data.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="category.touched && category.invalid">Category is required.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field *ngIf="subCategories$" appearance="fill">
+          <mat-label>Subcategory</mat-label>
+          <mat-select #subcategory="ngModel" ngModel name="subcategory" required>
+            <mat-option value="none">None</mat-option>
+            <mat-option *ngFor="let subCat of subCategories$ | async" [value]="subCat.id">
+              {{ subCat.data.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="subcategory.touched && subcategory.invalid">Subcategory is required.</mat-error>
+        </mat-form-field>
+  
+        <mat-divider class="product-form-dividers"></mat-divider>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Image URL</mat-label>
+          <input #imageUrl="ngModel" ngModel name="imageUrl" id="imageUrl" matInput placeholder="Paste the image URL here" type="text" required url>
+          <mat-error *ngIf="imageUrl.touched && imageUrl.errors?.required">ImageURL is required.</mat-error>
+          <mat-error *ngIf="imageUrl.errors?.url">Please enter a valid URL.</mat-error>
+      </mat-form-field>
+  
+      <br>
+  
+      <button mat-raised-button color="primary">Save</button>
+      </div>
+      <div class="form-card-divider"></div>
+  </form>
+ 
+  </mat-grid-tile>
+
+
+</mat-grid-list>
+
+<mat-grid-list cols="2" class="desktop-grid-list" style="margin-bottom: 15em">
+  <mat-grid-tile>
+    <form #f1="ngForm" (ngSubmit)="save(f1.value)" id="add-product-form">
+      <div class="new-product-form">
+      <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input #title1="ngModel" ngModel name="title" id="title" matInput placeholder="Enter the product title" type="text" required>
+          <mat-error *ngIf="title1.touched && title1.invalid">Product title is required.</mat-error>
+      </mat-form-field>
+  
+      <mat-divider class="product-form-dividers"></mat-divider>
+  
+      <mat-form-field appearance="fill">
+          <mat-label>Price</mat-label>
+          <span matPrefix>$&nbsp;</span>
+          <input #price1="ngModel" ngModel name="price" id="price" matInput placeholder="Enter the product price" type="number" required [min]="0">
+          <mat-error *ngIf="price1.touched && price1.errors?.required">Product price is required.</mat-error>
+          <mat-error *ngIf="price1.errors?.min">Price should be 0 or higher.</mat-error>
+      </mat-form-field>
+  
+      <mat-divider class="product-form-dividers"></mat-divider>
+      
+      <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select #category1="ngModel" ngModel name="category" required>
+            <mat-option></mat-option>
+            <mat-option *ngFor="let cat of categories$ | async" [value]="cat.id"  (click)="getSubCategory(cat.id)">
+              {{ cat.data.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="category1.touched && category1.invalid">Category is required.</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field *ngIf="subCategories$" appearance="fill">
+          <mat-label>Subcategory</mat-label>
+          <mat-select #subcategory1="ngModel" ngModel name="subcategory" required>
+            <mat-option value="none">None</mat-option>
+            <mat-option *ngFor="let subCat of subCategories$ | async" [value]="subCat.id">
+              {{ subCat.data.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="subcategory1.touched && subcategory1.invalid">Subcategory is required.</mat-error>
+        </mat-form-field>
+  
+        <mat-divider class="product-form-dividers"></mat-divider>
+      
+        <mat-form-field appearance="fill">
+          <mat-label>Image URL</mat-label>
+          <input #imageUrl1="ngModel" ngModel name="imageUrl" id="imageUrl" matInput placeholder="Paste the image URL here" type="text" required url>
+          <mat-error *ngIf="imageUrl1.touched && imageUrl1.errors?.required">ImageURL is required.</mat-error>
+          <mat-error *ngIf="imageUrl1.errors?.url">Please enter a valid URL.</mat-error>
+      </mat-form-field>
+  
+      <br>
+  
+      <button mat-raised-button color="primary">Save</button>
+      </div>
+  </form>
+  </mat-grid-tile>
+  
+  <mat-grid-tile>
+    <mat-card *ngIf="title1.value" class="medium-card">
+      <mat-card-title-group>
+        <mat-card-title>{{ title1.value }}</mat-card-title>
+        <mat-card-subtitle>
+          <br>
+          <img mat-card-md-image [src]="imageUrl1.value" >
+        </mat-card-subtitle>
+        
+      </mat-card-title-group>
+      <mat-card-content>
+        {{ price1.value | currency:'USD'}}
+      </mat-card-content>
+    </mat-card>
+
+
+    <mat-card *ngIf="title1.value" class="large-card">
+      <mat-card-title-group>
+        
+        <mat-card-title>{{ title1.value }}</mat-card-title>
+        <mat-card-subtitle>
+          <br>
+          <img mat-card-xl-image [src]="imageUrl1.value">
+        </mat-card-subtitle>
+
+      </mat-card-title-group>
+      <mat-card-content>
+        {{ price1.value | currency:'USD'}}
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<app-mat-footer></app-mat-footer>
+
+
+
+

@@ -1,0 +1,32 @@
+.mat-elevation-z8 {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding-left: 3em;
+}
+
+
+.button-filter {
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 7%;
+    width: fit-content;
+}
+
+app-mat-footer {
+    bottom: 0;
+    width: 100%
+}
+
+@media (max-width: 560px) {
+    .mat-elevation-z8 {
+        width:min-content;
+    }
+    .button-filter {
+        margin: 0 auto;
+    }
+}

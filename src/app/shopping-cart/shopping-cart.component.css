@@ -1,0 +1,127 @@
+.mat-elevation-z8 {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.mat-display-1 {
+    text-transform: uppercase;
+    width: fit-content;
+    font-weight: 500;
+}
+
+.header-content {
+    padding-left: 10em;
+    padding-bottom: 4em;
+}
+
+.header-border {
+    border-bottom: 1px solid orange;
+    border-bottom-width: thick;
+    width: 8em;
+    margin-top: -4em;
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    padding-left: 3em;
+    font-size: 18px;
+}
+
+.mat-sort-header-content {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mat-footer-row {
+    font-weight: bold;
+}
+
+.decrease-quantity-btn {
+    margin-right: 1em;
+}
+
+.increase-quantity-btn {
+    margin-left: 1em;
+}
+
+.shopping-cart-btns {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 2em;
+}
+
+.check-out-btn {
+    float: right;
+}
+
+.thumbnail {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    background-size: cover;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+app-mat-footer {
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 550px) {
+
+    th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+        font-size: 14px;
+    }
+    .thumbnail { 
+        display: none;
+    }
+    .header-content {
+        padding-left: 0;
+        margin: 0 auto;
+        width: fit-content;
+    }
+    .mat-display-1 {
+        font-size: 25px;
+    }
+    .header-border {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+@media (max-width: 980px) {
+    .shopping-cart-btns {
+        margin: 0 auto;
+    }
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+    th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+        font-size: 16px;
+    }
+    .shopping-cart-btns {
+        width: 75%;
+    }
+}
+
+@media (max-width: 734px) {
+    
+    .decrease-quantity-btn {
+        margin-right: 0;
+    }
+    
+    .increase-quantity-btn {
+        margin-left: 0;
+    }
+    th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+        font-size: 14px;
+    }
+    .shopping-cart-btns {
+        width: 90%;
+    }
+}
+
+
